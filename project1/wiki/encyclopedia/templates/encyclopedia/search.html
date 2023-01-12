@@ -1,0 +1,29 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block body %}
+
+<div>
+    <p>You searched for "{{ title }}". There are no Encyclopedias with that title.</p>
+</div>
+
+{% if not entries %}
+    
+<p>There are no matching titles for your search :(</p>
+    
+{% else %}
+    {% for entry in entries %}
+        <p>Here are some matching titles:</p>
+        <ul>
+            <li>
+                <a href="{% url 'entry' title=entry %}">{{ entry }}</a>
+            </li>
+        </ul>
+    {% endfor %}
+{% endif %}
+
+    
+{% endblock %}
