@@ -1,0 +1,143 @@
+.button {
+    text-align: right;
+    padding-right: 15px;
+    font: 14px Roboto, Arial, sans-serif;
+    background-color: transparent;
+    color: black;
+    text-decoration-line: none;
+}
+
+.button:hover {
+    cursor: pointer;
+    text-decoration-line: underline;
+    color: black
+}
+
+#div1 {
+    text-align: right;
+    height: 48px;
+    padding: 7px;
+}
+
+body {
+    font-size: 14px;
+    font-family: arial,sans-serif;
+    background-color: white;
+}
+
+#form {
+    text-align: center;
+}
+
+.button1{
+    cursor: pointer;
+    margin: 90px 4px;
+    padding: 0 16px;
+    line-height: 27px;
+    min-width: 54px;
+    text-align: center;
+    border: transparent;
+    border-radius: 4px;
+    color: black;
+    background-color: #f8f9fa;
+}
+
+.button1:hover{
+    border: 1px solid gray;
+    border-radius: 4px;
+}
+
+#input{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 200px 0;
+    width: 550px;
+    height: 45px;
+    font-size: 16px;
+    border-radius: 25px;
+    border: 1px grey solid;
+    font-size: 20px;
+    padding: 5px;
+    outline: none;
+}
+
+#input:focus{
+    border: 2px solid darkgray;
+}
+
+#logo{
+    width: 330px;
+    height: 90px;
+    margin-top: 90px;
+}
+
+h2, h4{
+    margin: 20px;
+}
+
+#div2{
+    border-bottom: 1px solid gray;
+}
+
+#div3{
+    margin-top: 20px;
+}
+
+#div4{
+    margin: 30px 40px;
+}
+
+.div5{
+    margin: 20px;
+}
+
+#p1{
+    margin-left: 59%;
+    margin-top: -30px;
+    font-weight: bold;
+}
+
+.p2{
+    margin-left: 60%;
+    margin-top: -30px;
+    font-size: small;
+}
+
+#button2{
+    background-color: rgb(48, 51, 245);
+    color: white;
+    border: transparent;
+    outline: none;
+}
+
+#button2:hover{
+    border: 1px solid gray;
+    cursor: pointer;
+}
+
+#as1, #as2, #as3, #as4{
+    outline: none;
+    width: 40%;
+}
+
+#as1:focus, #as2:focus, #as3:focus, #as4:focus{
+    border: 1px solid blue;
+}
+
+#as1{
+    margin-left: 72px;
+}
+
+#as3{
+    margin-left: 57px;
+}
+
+#as4{
+    margin-left: 33px;
+}
+
+#div6{
+    margin-top: 50px;
+    margin-left: 20px;
+}
