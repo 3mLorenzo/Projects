@@ -1,0 +1,24 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    {% if auctions %}
+        {% for auction in auctions %}
+            <div class="border mb-2 pb-2">
+                <div class="text-center">
+                        <h4 class="pt-2">Item: {{ auction.title }}</h4>
+                        <img src="{{ auction.image_url }}" alt="Listing Image" width="250" height="250">
+                        <h5 class="pt-2 pb-2">Price: {{ auction.initial_bid }}</h5>
+                        <p class="pb-2">Description: {{ auction.description }}</p>
+                        <p class="pb-2">Category: {{ auction.category }}</p>
+                        <a href="{% url 'listing' id=auction.id %}" class="btn btn-secondary">Buy</a>
+                </div>
+            </div>
+        {% endfor %}
+
+    {% else %}
+            <div>
+                <h3>You have no Auctions on your Watchlist. If you find anything interesting, try adding it to your watchlist so you can check it out again later!</h3>
+            </div>
+    
+    {% endif %}
+{% endblock %}

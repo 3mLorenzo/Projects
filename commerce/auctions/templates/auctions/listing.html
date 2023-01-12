@@ -1,0 +1,99 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+<div>
+    {% if bid == 0 %}
+    <div class="alert alert-success" role="alert">
+        {{ message }}
+    </div>
+    {% endif %}
+</div>
+
+<div>
+    {% if not auction.active and user == auction.initial_bid.bidder %}
+    <div class="alert alert-success" role="alert">
+        Congrats!! You just won this auction!
+    </div>
+    {% endif %}
+</div>
+
+<div>
+    {% if bid > 0 %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+    {% elif bid < 0 %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+    {% endif %}
+</div>
+
+<div clas="mb-2">
+    {% if user.is_authenticated and auction.active %}
+        {% if owner %}
+        <form action="{% url 'close' id=auction.id %}" method="POST">
+            {% csrf_token %}
+            <input class="btn btn-secondary mb-1" type="submit" value="Close auction"> 
+        </form>
+        {% endif %}
+        {% if in_watchlist %}
+            <form action="{% url 'remove_watchlist' id=auction.id %}" method="POST">
+                {% csrf_token %}
+                <input class="btn btn-secondary mb-1" type="submit" value="Remove from watchlist"> 
+            </form>
+        {% else %}
+        <form action="{% url 'add_watchlist' id=auction.id %}" method="POST">
+            {% csrf_token %}
+            <input class="btn btn-secondary mb-2" type="submit" value="Add to watchlist"> 
+        </form>
+        {% endif %}
+    {% endif %}
+</div>
+<div class="border mb-2 pb-2">
+    <div class="text-center">
+        <h4 class="pt-2">Item: {{ auction.title }}</h4>
+        <img src="{{ auction.image_url }}" alt="Listing Image" width="450" height="350">
+        <p>Description: {{ auction.description }}</p>
+        <p>Category: {{ auction.category }}</p>
+        <p>Owner: {{ auction.owner }}</p>
+    </div>
+</div>
+
+<div class="border mb-2 pb-2 pl-2 pr-2 pt-2">
+    <h5 class="pt-2">Price: ${{ auction.initial_bid }}</h5>
+    {% if user.is_authenticated %}
+    <form action="{% url 'bid' id=auction.id %}" method="post">
+        {% csrf_token %}
+        <label for="bid">Make a bid here!</label>
+        <input type="number" min="0" name="bid" id="bid"> 
+        <input class="btn btn-secondary mb-1" type="submit" value="Make bid">
+    </form>
+    {% endif %}
+</div>
+
+<div class="border mb-2 pb-2 pl-2 pr-2 pt-2">
+    <h3>Comments</h3>
+    <div>
+        <ol>
+            {% for comments in all_comments %} 
+                <div class="border-bottom">
+                    <li>{{ comments.comment }} (by <strong>{{ comments.commenter }}</strong>)</li>
+                </div>  
+            {% endfor %}
+        </ol>
+    </div>
+    <div>
+        {% if user.is_authenticated %}
+            <form action="{% url 'comment' id=auction.id %}" method="post">
+                {% csrf_token %}
+                <label for="comment">Add a comment here!</label>
+                <input type="text" name="comment" autocomplete="off" id="comment"> 
+                <input class="btn btn-secondary mb-1" type="submit" value="Add comment">
+            </form>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
