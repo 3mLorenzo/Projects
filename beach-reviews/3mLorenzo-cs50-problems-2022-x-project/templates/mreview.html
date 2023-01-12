@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+   Make a review
+{% endblock %}
+
+
+{% block main %}
+
+<form action="/mreview" method="post">
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="state" name="state" placeholder="Estado (UF)" type="text" size="80">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto"  name="name" placeholder="Nome da praia" type="text" size="80">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto"  name="pollution" placeholder="Índice de poluição 1-10" type="integer" size="80">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto"  name="restaurants" placeholder="Acesso a restaurantes 1-10" type="integer" size="80">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto"  name="crowd" placeholder="Densidade de pessoas 1-10" type="integer" size="80">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto"  name="water" placeholder="Qualidade da água 1-10" type="integer" size="80">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto"  name="waves" placeholder="Agressividade do mar 1-10" type="integer" size="80">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto"  name="accessability" placeholder="Acessibilidade 1-10" type="integer" size="80">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto"  name="facilities" placeholder="Instalações 1-10" type="integer" size="80">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto"  name="p_comment" placeholder="Comentário pessoal" type="text" size="80">
+    </div>
+    <button class="btn btn-primary" type="submit" id="send_review" >Enviar avaliação</button>
+</form>
+
+{% endblock %}

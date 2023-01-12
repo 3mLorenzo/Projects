@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+   Visualizar avaliações
+{% endblock %}
+
+
+{% block main %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Estado</th>
+            <th>Nome da praia</th>
+            <th>Poluição</th>
+            <th>Restaurantes</th>
+            <th>Densidade de pessoas</th>
+            <th>Qualidade da água</th>
+            <th>Agressividade do mar</th>
+            <th>Acessibilidade</th>
+            <th>Instalações</th>
+            <th>Comentário pessoal</th>
+            <th>Hora</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for review in reviews %}
+        <tr>
+            <td>{{ review["state"].upper() }}</td>
+            <td>{{ review["name"] }}</td>
+            <td>{{ review["pollution"] }}</td>
+            <td>{{ review["restaurants"] }}</td>
+            <td>{{ review["crowd"] }}</td>
+            <td>{{ review["water"] }}</td>
+            <td>{{ review["waves"] }}</td>
+            <td>{{ review["accessability"] }}</td>
+            <td>{{ review["facilities"] }}</td>
+            <td>{{ review["p_comment"] }}</td>
+            <td>{{ review["time"] }}</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+{% endblock %}
