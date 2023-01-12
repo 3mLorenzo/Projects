@@ -1,5 +1,5 @@
 -- Youtube link:
-    here
+    https://youtu.be/RLEd2t4pJEw
 
 -- Main idea
     The main idea for this project is to create a web app using Javascript, Python and the framework that we used in this whole course, that is Django. The web-app consists of a task managing app, a place that you can create your tasks and work on them until the deadline. I had this idea because I myself have issues on working uniformlly and not doing everything on the last day. I think managing your time is very import and is also very normal if you need help with it. Hence, the web-app I made. The main idea for the app was for it to remain simple, so that people don´t waste their time creating tasks instead of doing them. The main components of the app are:
