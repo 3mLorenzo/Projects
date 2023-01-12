@@ -1,0 +1,30 @@
+{% extends "clock/base.html" %}
+
+{% block body %}
+
+    <h2 class="text-center font-italic">Register</h2>
+
+    {% if message %}
+        <div class="text-center font-italic text-danger">{{ message }}</div>
+    {% endif %}
+
+    <form action="{% url 'clock:register' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input class="form-control" autofocus type="text" name="username" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="email" name="email" placeholder="Email Address">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="password" name="password" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password">
+        </div>
+        <input class="btn btn-success" type="submit" value="Register">
+    </form>
+    <br>
+    <p class="text-center font-italic">Already have an account? <a href="{% url 'clock:login' %}">Log In here.</a></p>
+
+{% endblock %}

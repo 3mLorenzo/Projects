@@ -1,0 +1,13 @@
+{% extends 'clock/base.html' %}
+
+{% block body %}
+    <div class="text-center">
+        <h1>Delete Category</h1>
+        <p>Are you sure you want to delete the category "<strong>{{ category.name }}</strong>"?</p>
+        <p class="font-italic"><strong>Once you delete a category there is no way you can access it again!</strong></p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+{% endblock %}

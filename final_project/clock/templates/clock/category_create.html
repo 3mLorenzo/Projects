@@ -1,0 +1,12 @@
+{% extends 'clock/base.html' %}
+
+{% block body %}
+<h1 class="border-bottom font-italic pb-2">Create category</h1>
+<div class="text-center m-3 p-2">
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+{% endblock %} 

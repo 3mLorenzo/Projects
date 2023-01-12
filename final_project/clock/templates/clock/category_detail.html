@@ -1,0 +1,17 @@
+{% extends 'clock/base.html' %}
+
+{% block body %}
+    {% if category.user == user %}
+    <div class="border rounded m-3 p-3">
+      <h2 class="font-italic">{{ category.name }}</h2>
+      <br>
+      <p class="border-bottom">{{ category.description }}</p>
+    </div>
+
+    <div class="border rounded m-3 p-3 text-center font-italic">
+      <h2><a href="{% url 'clock:category_update' category.id %}">Edit</a> or <a href="{% url 'clock:category_delete' category.id %}">Delete</a> category.</h2>
+    </div>
+  {% else %}
+      <p>You are not authorized to view or modify this task.</p>
+  {% endif %}
+{% endblock %} 

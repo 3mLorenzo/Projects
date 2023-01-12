@@ -1,0 +1,22 @@
+{% extends 'clock/base.html' %}
+
+{% block body %}
+    <h4 class="text-center font-italic">
+        Create new task <a href="{% url 'clock:task_create' %}">here</a>!
+    </h4>
+    <h1>Tasks List</h1>
+        {% for task in tasks %}
+        <div class="border rounded m-2 p-2">
+            <h5><a href="{% url 'clock:task_detail' task.id %}">{{ task.title }}</a></h5>
+            <br>
+            <p class="border-bottom">Category: {{ task.category }}</p>
+            <p class="border-bottom">Description: {{ task.description }}</p> 
+            <p class="border-bottom">Due date: {{ task.due_date }}</p>
+            {% if task.completed %}
+                <p class="border-bottom text-success">Completed!</p>
+            {% else %}
+                <p class="border-bottom text-danger">Incompleted!</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+{% endblock %}

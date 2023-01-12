@@ -1,0 +1,69 @@
+{% extends 'clock/base.html' %}
+
+{% block body %}
+    {% if task.user == user %}
+      <div class="border rounded m-3 p-3">
+        <h2 class="font-italic">{{ task.title }}</h2>
+        <br>
+        <p class="border-bottom">{{ task.description }}</p>
+        <p class="border-bottom">Due Date: {{ task.due_date }}</p>
+        <p class="border-bottom">Category: {{ task.category.name }}</p>
+        {% if task.completed %}
+            <p class="border-bottom text-success">Completed!</p>
+        {% else %}
+            <p class="border-bottom text-danger">Incompleted!</p>
+        {% endif %}
+      </div>
+        {% if task.completed %}
+          <button id="complete-button" class="btn btn-danger m-3 p-3" data-completed="true">Mark as Incomplete</button>
+        {% else %}
+          <button id="complete-button" class="btn btn-success m-3 p-3" data-completed="false">Mark as Complete</button>
+        {% endif %}
+      <div class="border rounded m-3 p-3 text-center font-italic">
+        <h2><a href="{% url 'clock:task_update' task.id %}">Edit</a> or <a href="{% url 'clock:task_delete' task.id %}">Delete</a> task.</h2>
+      </div>
+    {% else %}
+        <p>You are not authorized to view or modify this task.</p>
+    {% endif %}
+
+    <script>
+
+        const url = '{% url 'clock:complete_task' task.pk %}';
+
+        document.addEventListener('DOMContentLoaded', function() {
+          const button = document.getElementById('complete-button');
+          button.addEventListener('click', function() {
+            const completed = this.getAttribute('data-completed') === 'true';
+            const url = '/tasks/{{ task.pk }}/complete/';
+            fetch(url, {
+              method: 'POST',
+              headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                completed: !completed
+              })
+            }).then(response => response.json())
+              .then(data => {
+                if (data.success) {
+                  button.setAttribute('data-completed', !completed);
+                  if (completed) {
+                    button.innerHTML = 'Mark as Complete';
+                    button.classList.remove('btn-success');
+                    button.classList.add('btn-secondary');
+                    location. reload()
+                  } else {
+                    button.innerHTML = 'Mark as Incomplete';
+                    button.classList.remove('btn-secondary');
+                    button.classList.add('btn-success');
+                    location. reload()
+                  }
+                }
+              });
+          }); 
+        });
+      </script>
+{% endblock %}
+
+

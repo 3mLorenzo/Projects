@@ -1,0 +1,18 @@
+{% extends 'clock/base.html' %}
+
+{% block body %}
+    <h4 class="text-center font-italic">
+        Create new category <a href="{% url 'clock:category_create' %}">here</a>!
+    </h4>
+    <br>
+    <h6 class="font-italic">Note: categories are shared between all users. Feel free to add to the database and/or use it. Here is a list of your categories, you can edit and delete them. Other categories not made by you, you can only use it when creating a task.</h6>
+        <h1>Category List</h1>
+            {% for category in categories %}
+            <div class="border rounded m-2 p-2">
+                <h5><a href="{% url 'clock:category_detail' category.id %}">{{ category.name }}</a></h5>
+                <br> 
+                <p class="border-bottom">Description: {{ category.description }}</p>                 
+            </div>
+            {% endfor %}
+    </ul>
+{% endblock %} 

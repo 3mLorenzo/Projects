@@ -1,0 +1,14 @@
+{% extends 'clock/base.html' %}
+
+{% block body %}
+    <div class="text-center">
+        <h1 class="border-bottom">Delete Task</h1>
+        <br>
+        <p>Are you sure you want to delete the task "<strong>{{ task.title }}</strong>"?</p>
+        <p class="font-italic"><strong>Once you delete a task there is no way you can access it again!</strong></p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </div>  
+{% endblock %} 
