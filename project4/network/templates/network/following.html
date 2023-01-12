@@ -1,0 +1,72 @@
+{% extends "network/layout.html" %}
+
+{% block body %}   
+    <script>
+        function like(id, liked) {
+            const button = document.getElementById(`${id}`);
+            button.classList.remove("fa-thumbs-down");
+            button.classList.remove("fa-thumbs-up");
+
+            if (liked.indexOf(id) >= 0) {
+                var like = true;
+            }
+            else {
+                var like = false;
+            }
+
+            if (like === true) {
+                fetch(`r_like/${id}`)
+                .then(response => response.json())
+                .then(result => {
+                    button.classList.add("fa-thumbs-up");
+                    location.reload()
+                })
+            }
+            else {
+                fetch(`a_like/${id}`)
+                .then(response => response.json())
+                .then(result => {
+                    button.classList.add("fa-thumbs-down");
+                    location.reload()
+                })
+            }
+
+            like = !like
+        }
+    </script>
+
+    <div class="pl-2 pt-2">
+        <h4>Related posts</h4>
+        {% for post in page_posts %}
+            <div class="border p-2 m-2">
+                <div>
+                    <h6><a href="{% url 'profile_page' user_id=post.owner.id %}">@{{ post.owner }}</a></h6>
+                    <p>{{ post.content }}</p>
+                    <p>{{ post.timestamp }}</p>
+                    {% if post.id in liked %}
+                        <button type="button" class="btn btn-info fa fa-thumbs-down col-12" id="{{ post.id }}" onclick="like({{ post.id }}, {{ liked }})"></button>
+                    {% else %}
+                        <button type="button" class="btn btn-info fa fa-thumbs-up col-12" id="{{ post.id }}" onclick="like({{ post.id }}, {{ liked }})"></button>
+                    {% endif %}
+                </div>
+                {% for like in likes %}
+                        {% if like.post == post %}
+                            <div class="p-1"><strong>{{ like.user }}</strong> liked this post!</div>
+                        {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            {% if page_posts.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_posts.previous_page_number }}">Previous</a></li>
+            {% endif %}
+            {% if page_posts.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_posts.next_page_number }}">Next</a></li>
+            {% endif %}
+        </ul>
+      </nav>
+
+{% endblock %}
